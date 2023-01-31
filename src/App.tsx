@@ -46,6 +46,21 @@ function App() {
     return setEdges(edges => addEdge(connection, edges))
   }, [])
 
+  function addSquareNode() {
+    setNodes(nodes => [
+      ...nodes,
+      {
+        id: crypto.randomUUID(),
+        type: 'square',
+        position: {
+          x: 750,
+          y: 350,
+        },
+        data: {},
+      },
+    ])
+  }
+
   return (
     <div className='w-screen h-screen'>
       <ReactFlow
@@ -68,6 +83,12 @@ function App() {
         />
         <Controls />
       </ReactFlow>
+
+      <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg border border-zinc-300 px-8 h-20 w-96 overflow-hidden">
+            <button 
+            onClick={addSquareNode}
+            className="w-32 h-32 bg-violet-500 mt-6 rounded transition-transform hover:-translate-y-2"></button>
+        </div>
     </div>
   )
 }
